@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>2026 九州親子自駕 - 燕子號 Edition</title>
+    <title>2026 九州親子自駕</title>
     <style>
         :root {
             --tsubame-red: #bb2224;    /* 九州新幹線經典紅色 */
@@ -36,7 +36,7 @@
 
         header h1 { font-size: 1.3rem; font-weight: 800; letter-spacing: 1px; }
 
-        /* 導航分頁 */
+        /* 導航分頁 (iOS Style Scroll) */
         .nav-tabs {
             display: flex;
             background-color: white;
@@ -51,11 +51,11 @@
 
         .tab-btn {
             flex: 1;
-            min-width: 75px;
+            min-width: 80px;
             padding: 14px 5px;
             border: none;
             background: none;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             font-weight: bold;
             color: #64748b;
             cursor: pointer;
@@ -85,7 +85,7 @@
         /* 雙欄內容 */
         .info-grid {
             display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
+            grid-template-columns: 1fr 1fr;
             gap: 15px;
         }
         @media (max-width: 850px) { .info-grid { grid-template-columns: 1fr; } }
@@ -99,7 +99,20 @@
             border-bottom: 2px solid var(--tsubame-gold);
         }
 
-        /* 卡片與交通樣式 */
+        /* 航班卡片 */
+        .flight-card { 
+            background: #ffffff;
+            border: 2px solid var(--border); 
+            border-radius: 12px; 
+            padding: 15px; 
+            margin-bottom: 15px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05); 
+        }
+
+        /* 節點卡片 */
         .station-node {
             background-color: var(--card-bg);
             border: 1px solid var(--border);
@@ -154,26 +167,13 @@
         }
         .notes strong { color: var(--tsubame-red); }
 
-        .map-icon { text-decoration: none; font-size: 1.3rem; cursor: pointer; }
-
-        /* 頂部快速資訊 */
-        .summary-box {
-            background: var(--tsubame-black);
-            color: var(--tsubame-gold);
-            padding: 10px 15px;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            margin-bottom: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+        .map-icon { text-decoration: none; font-size: 1.3rem; cursor: pointer; display: inline-block; }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>2026 九州夏季親子自駕行程</h1>
+    <h1>2026 九州親子自駕行程</h1>
 </header>
 
 <div class="nav-tabs">
@@ -191,233 +191,335 @@
 
 <div class="main-layout">
 
-    <!-- DAY 1 -->
     <div id="day1" class="day-content active">
-        <div class="summary-box">
-            <span>📍 福岡機場 → 鹿兒島</span>
-            <span>🚄 新幹線移動</span>
-        </div>
         <div class="info-grid">
             <div>
                 <h2 class="section-title">📍 行程 & 交通</h2>
-                <div class="station-node">
-                    <div class="card-header"><span class="time-badge">14:30</span><span class="title-text">福岡機場 (FUK) 抵達</span></div>
-                    <div class="notes">辦理入境後搭的士或接駁巴士前往 JR 博多站。</div>
+                
+                <div class="flight-card">
+                    <div style="text-align: center;"><div style="font-size: 1.2rem; font-weight: 800;">HKG</div></div>
+                    <div style="flex: 1; text-align: center; color: var(--tsubame-red); font-weight: bold;"><div>CX 588</div><div style="font-size: 0.7rem; color: #64748b;">✈️ 抵達福岡</div></div>
+                    <div style="text-align: center;"><div style="font-size: 1.2rem; font-weight: 800;">FUK</div></div>
                 </div>
-                <div class="trans-node">🚄 領取預訂票券，搭乘新幹線南下前往鹿兒島中央站 (車程約 1h 20m)。</div>
+
                 <div class="station-node">
-                    <div class="card-header"><span class="time-badge">18:30</span><span class="title-text">🏠 Solaria Nishitetsu Hotel 鹿兒島</span><a class="map-icon" href="https://maps.app.goo.gl/3A6y1K8V6CjLpYvY9" target="_blank">🗺️</a></div>
+                    <div class="card-header"><span class="time-badge">下午</span><span class="title-text">福岡機場 (FUK)</span><a class="map-icon" href="https://www.google.com/maps/search/?api=1&query=福岡空港" target="_blank">🗺️</a></div>
+                    <div class="notes">辦理入境，搭的士或接駁巴士前往 JR 博多站。</div>
+                </div>
+                <div class="trans-node">🚄 於博多站領取預訂票券，搭乘新幹線南下前往鹿兒島中央站 (車程約 1h 20m)。</div>
+                <div class="station-node">
+                    <div class="card-header"><span class="time-badge">18:30</span><span class="title-text">🏠 Solaria Nishitetsu 鹿兒島</span><a class="map-icon" href="https://www.google.com/maps/search/?api=1&query=Solaria+Nishitetsu+Hotel+Kagoshima" target="_blank">🗺️</a></div>
                     <div class="notes">酒店位於車站對面，便利翌日取車。</div>
                 </div>
             </div>
             <div>
-                <h2 class="section-title">🍴 晚餐建議</h2>
-                <div class="station-node food-card"><div class="card-header"><span class="title-text">鹿兒島黑豚料理 (車站周邊)</span></div></div>
+                <h2 class="section-title">🍴 美食推介</h2>
+                <div class="station-node food-card">
+                    <div class="card-header"><span class="title-text">1. 黑勝亭 中央駅本店</span><a class="map-icon" href="https://www.google.com/maps/search/?api=1&query=黒かつ亭+中央駅本店" target="_blank">🗺️</a></div>
+                    <div class="notes">極高質素鹿兒島黑豬肉炸豬排，外脆內多汁。</div>
+                </div>
+                <div class="station-node food-card">
+                    <div class="card-header"><span class="title-text">2. 吾愛人 (Ajimori) 中央駅西口店</span><a class="map-icon" href="https://www.google.com/maps/search/?api=1&query=吾愛人+中央駅西口店" target="_blank">🗺️</a></div>
+                    <div class="notes">正宗黑豬肉涮涮鍋，湯底清甜，適合小朋友。</div>
+                </div>
+                <div class="station-node food-card">
+                    <div class="card-header"><span class="title-text">3. 天文館むじゃき (AMU Plaza B1)</span><a class="map-icon" href="https://www.google.com/maps/search/?api=1&query=天文館むじゃき+アミュプラザ店" target="_blank">🗺️</a></div>
+                    <div class="notes">鹿兒島名物「白熊冰」，就喺車站樓下。</div>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- DAY 2 -->
     <div id="day2" class="day-content">
-        <div class="summary-box"><span>📍 鹿兒島櫻島一日遊</span><span>🚢 渡輪自駕</span></div>
         <div class="info-grid">
             <div>
                 <h2 class="section-title">📍 行程 & 交通</h2>
                 <div class="station-node">
-                    <div class="card-header"><span class="time-badge">09:00</span><span class="title-text">鹿兒島市區取車</span></div>
+                    <div class="card-header"><span class="time-badge">09:00</span><span class="title-text">鹿兒島市區取車</span><a class="map-icon" href="https://www.google.com/maps/search/?api=1&query=鹿児島中央駅" target="_blank">🗺️</a></div>
                 </div>
-                <div class="trans-node">🚢 揸車上櫻島渡輪 (15m)。船上可食傳統烏冬。</div>
+                <div class="trans-node">🚢 揸車前往櫻島渡輪碼頭，連車上船 (約 15 分鐘)。</div>
                 <div class="station-node">
-                    <div class="card-header"><span class="time-badge">11:00</span><span class="title-text">櫻島環島自駕</span><a class="map-icon" href="https://maps.app.goo.gl/u7zC6yP8K2mN6P7z8" target="_blank">🗺️</a></div>
-                    <div class="notes">參觀黑神埋沒鳥居、有村熔岩展望台。</div>
+                    <div class="card-header"><span class="time-badge">11:00</span><span class="title-text">櫻島環島自駕 (有村展望台)</span><a class="map-icon" href="https://www.google.com/maps/search/?api=1&query=有村溶岩展望所" target="_blank">🗺️</a></div>
+                    <div class="notes">觀看壯觀火山口地貌及黑神埋沒鳥居。</div>
                 </div>
                 <div class="station-node">
-                    <div class="card-header"><span class="time-badge">15:00</span><span class="title-text">熔岩渚公園足湯</span></div>
-                    <div class="notes">邊浸腳邊睇火山風景。</div>
+                    <div class="card-header"><span class="time-badge">15:00</span><span class="title-text">熔岩渚公園足湯</span><a class="map-icon" href="https://www.google.com/maps/search/?api=1&query=溶岩なぎさ公園足湯" target="_blank">🗺️</a></div>
+                    <div class="notes">全長 100 米的戶外免費足湯，對正海景。</div>
                 </div>
             </div>
             <div>
-                <h2 class="section-title">🍴 美食推薦</h2>
-                <div class="station-node food-card"><div class="card-header"><span class="title-text">櫻島港渡輪烏冬 (小橘子風味)</span></div></div>
+                <h2 class="section-title">🍴 美食推介</h2>
+                <div class="station-node food-card">
+                    <div class="card-header"><span class="title-text">1. 櫻島渡輪 藪金烏冬</span><a class="map-icon" href="https://www.google.com/maps/search/?api=1&query=やぶ金+桜島フェリー" target="_blank">🗺️</a></div>
+                    <div class="notes">船上名物！短短 15 分鐘航程內必食的熱湯烏冬。</div>
+                </div>
+                <div class="station-node food-card">
+                    <div class="card-header"><span class="title-text">2. 櫻島 道之驛 (火の島めぐみ館)</span><a class="map-icon" href="https://www.google.com/maps/search/?api=1&query=道の駅+桜島+火の島めぐみ館" target="_blank">🗺️</a></div>
+                    <div class="notes">推薦特產「櫻島小橘子軟雪糕」，消暑一流。</div>
+                </div>
+                <div class="station-node food-card">
+                    <div class="card-header"><span class="title-text">3. 鹿兒島拉麵 豚とろ (天文館)</span><a class="map-icon" href="https://www.google.com/maps/search/?api=1&query=鹿児島ラーメン+豚とろ+天文館本店" target="_blank">🗺️</a></div>
+                    <div class="notes">叉燒極度軟腍入口即化，當地人強烈推薦。</div>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- DAY 3 -->
     <div id="day3" class="day-content">
-        <div class="summary-box"><span>📍 大隅半島自駕</span><span>🏎️ 玩車一日遊</span></div>
         <div class="info-grid">
             <div>
                 <h2 class="section-title">📍 行程 & 交通</h2>
                 <div class="trans-node">🚗 沿海自駕前往大隅半島 (約 1h 40m)。</div>
                 <div class="station-node">
-                    <div class="card-header"><span class="time-badge">11:00</span><span class="title-text">達格利岬遊園地</span><a class="map-icon" href="https://maps.app.goo.gl/B46K8A3D9E2F1G0H7" target="_blank">🗺️</a></div>
-                    <div class="notes">設有卡丁車、單軌電車及復古遊樂設施。</div>
+                    <div class="card-header"><span class="time-badge">11:00</span><span class="title-text">達格利岬遊園地</span><a class="map-icon" href="https://www.google.com/maps/search/?api=1&query=ダグリ岬遊園地" target="_blank">🗺️</a></div>
+                    <div class="notes">全日放電！設有卡丁車賽道、單軌電車及復古機動遊戲。</div>
                 </div>
                 <div class="trans-node">🚗 回程往市區方向。</div>
                 <div class="station-node">
-                    <div class="card-header"><span class="time-badge">16:00</span><span class="title-text">仙巖園 & 星巴克</span></div>
-                    <div class="notes">參觀傳統園林及特色歷史建築改裝之星巴克。</div>
+                    <div class="card-header"><span class="time-badge">16:00</span><span class="title-text">仙巖園</span><a class="map-icon" href="https://www.google.com/maps/search/?api=1&query=仙巌園" target="_blank">🗺️</a></div>
+                    <div class="notes">參觀大名庭園，園內有全日本最美星巴克之一。</div>
                 </div>
             </div>
             <div>
-                <h2 class="section-title">🍴 美食推薦</h2>
-                <div class="station-node food-card"><div class="card-header"><span class="title-text">薩摩切子美學下午茶</span></div></div>
+                <h2 class="section-title">🍴 美食推介</h2>
+                <div class="station-node food-card">
+                    <div class="card-header"><span class="title-text">1. 達格利岬遊園地 餐廳</span><a class="map-icon" href="https://www.google.com/maps/search/?api=1&query=ダグリ岬遊園地" target="_blank">🗺️</a></div>
+                    <div class="notes">園內提供簡單日式家庭料理、炒麵及咖喱飯。</div>
+                </div>
+                <div class="station-node food-card">
+                    <div class="card-header"><span class="title-text">2. 仙巖園 櫻華亭</span><a class="map-icon" href="https://www.google.com/maps/search/?api=1&query=仙巌園+桜華亭" target="_blank">🗺️</a></div>
+                    <div class="notes">邊欣賞櫻島絕景，邊享用精緻薩摩鄉土御膳。</div>
+                </div>
+                <div class="station-node food-card">
+                    <div class="card-header"><span class="title-text">3. 星巴克 鹿兒島仙巖園店</span><a class="map-icon" href="https://www.google.com/maps/search/?api=1&query=スターバックスコーヒー+鹿児島仙巌園店" target="_blank">🗺️</a></div>
+                    <div class="notes">舊薩摩藩主建築改裝，打卡與休息的極佳地點。</div>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- DAY 4 -->
     <div id="day4" class="day-content">
-        <div class="summary-box"><span>📍 鹿兒島 → 熊本</span><span>🏰 城下町散策</span></div>
         <div class="info-grid">
             <div>
                 <h2 class="section-title">📍 行程 & 交通</h2>
-                <div class="trans-node">🚗 高速自動車道北上至熊本 (約 2h 15m)。</div>
+                <div class="trans-node">🚗 經九州自動車道北上至熊本 (車程約 2h 15m)。</div>
                 <div class="station-node">
-                    <div class="card-header"><span class="time-badge">14:00</span><span class="title-text">熊本城 & 城彩苑</span><a class="map-icon" href="https://maps.app.goo.gl/9Z1A2B3C4D5E6F7G8" target="_blank">🗺️</a></div>
-                    <div class="notes">天守閣內設有電梯及冷氣，方便推車。</div>
+                    <div class="card-header"><span class="time-badge">14:00</span><span class="title-text">熊本城 & 城彩苑</span><a class="map-icon" href="https://www.google.com/maps/search/?api=1&query=熊本城" target="_blank">🗺️</a></div>
+                    <div class="notes">天守閣內部全面翻新，設有冷氣與電梯，對幼童非常友善。</div>
                 </div>
                 <div class="station-node">
-                    <div class="card-header"><span class="time-badge">17:00</span><span class="title-text">SAKURA MACHI 屋頂花園</span></div>
-                    <div class="notes">觀看熊本市區日落。</div>
+                    <div class="card-header"><span class="time-badge">17:00</span><span class="title-text">SAKURA MACHI 花園</span><a class="map-icon" href="https://www.google.com/maps/search/?api=1&query=サクラマチクマモト" target="_blank">🗺️</a></div>
+                    <div class="notes">商場頂樓有超大空中花園，可睇熊本市日落。</div>
                 </div>
             </div>
             <div>
-                <h2 class="section-title">🍴 美食推薦</h2>
-                <div class="station-node food-card"><div class="card-header"><span class="title-text">熊本馬肉料理 / 熊本拉麵</span></div></div>
+                <h2 class="section-title">🍴 美食推介</h2>
+                <div class="station-node food-card">
+                    <div class="card-header"><span class="title-text">1. 菅乃屋 (櫻町店)</span><a class="map-icon" href="https://www.google.com/maps/search/?api=1&query=菅乃屋+サクラマチ店" target="_blank">🗺️</a></div>
+                    <div class="notes">熊本名物馬肉料理專門店，提供新鮮高質馬肉刺身。</div>
+                </div>
+                <div class="station-node food-card">
+                    <div class="card-header"><span class="title-text">2. 勝烈亭 (新市街本店)</span><a class="map-icon" href="https://www.google.com/maps/search/?api=1&query=勝烈亭+新市街本店" target="_blank">🗺️</a></div>
+                    <div class="notes">米芝蓮推介！熊本最強吉列豬排，肉汁豐富。</div>
+                </div>
+                <div class="station-node food-card">
+                    <div class="card-header"><span class="title-text">3. 熊本拉麵 黑亭 (櫻町店)</span><a class="map-icon" href="https://www.google.com/maps/search/?api=1&query=黒亭+サクラマチクマモト店" target="_blank">🗺️</a></div>
+                    <div class="notes">焦蒜香油豚骨湯底，加兩隻生雞蛋係最地道食法。</div>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- DAY 5 -->
     <div id="day5" class="day-content">
-        <div class="summary-box"><span>📍 阿蘇山脈自駕</span><span>⛰️ 大自然與農場</span></div>
         <div class="info-grid">
             <div>
                 <h2 class="section-title">📍 行程 & 交通</h2>
                 <div class="trans-node">🚗 前往阿蘇山區 (單程約 1h 15m)。</div>
                 <div class="station-node">
-                    <div class="card-header"><span class="time-badge">10:30</span><span class="title-text">阿蘇草千里 / 大觀峰</span></div>
-                    <div class="notes">欣賞火山口地貌與廣闊草原。</div>
+                    <div class="card-header"><span class="time-badge">10:30</span><span class="title-text">阿蘇 草千里 / 大觀峰</span><a class="map-icon" href="https://www.google.com/maps/search/?api=1&query=草千里ヶ浜" target="_blank">🗺️</a></div>
+                    <div class="notes">睇火山口絕景與草原上放養的牛馬，氣候涼爽。</div>
                 </div>
                 <div class="station-node">
-                    <div class="card-header"><span class="time-badge">14:00</span><span class="title-text">阿蘇農場樂園 (Aso Farm Land)</span></div>
-                    <div class="notes">體驗特色饅頭屋建築及兒童放電設施。</div>
+                    <div class="card-header"><span class="time-badge">14:00</span><span class="title-text">阿蘇農場樂園 (Aso Farm Land)</span><a class="map-icon" href="https://www.google.com/maps/search/?api=1&query=阿蘇ファームランド" target="_blank">🗺️</a></div>
+                    <div class="notes">體驗特色圓頂饅頭屋建築，內有大量兒童體能放電設施。</div>
                 </div>
             </div>
             <div>
-                <h2 class="section-title">🍴 美食推薦</h2>
-                <div class="station-node food-card"><div class="card-header"><span class="title-text">阿蘇赤牛丼 / 阿蘇農場牛奶</span></div></div>
+                <h2 class="section-title">🍴 美食推介</h2>
+                <div class="station-node food-card">
+                    <div class="card-header"><span class="title-text">1. いまきん食堂 (Imakin)</span><a class="map-icon" href="https://www.google.com/maps/search/?api=1&query=いまきん食堂" target="_blank">🗺️</a></div>
+                    <div class="notes">阿蘇名店！極品半熟「赤牛丼」，肉質鮮嫩無比。</div>
+                </div>
+                <div class="station-node food-card">
+                    <div class="card-header"><span class="title-text">2. 草千里景觀餐廳 Douce Nuage</span><a class="map-icon" href="https://www.google.com/maps/search/?api=1&query=Douce+Nuage+草千里" target="_blank">🗺️</a></div>
+                    <div class="notes">面對大草原歎咖啡及享用阿蘇牛奶製作的甜品。</div>
+                </div>
+                <div class="station-node food-card">
+                    <div class="card-header"><span class="title-text">3. 阿蘇農場樂園 蘑菇亭</span><a class="map-icon" href="https://www.google.com/maps/search/?api=1&query=阿蘇ファームランド+きのこ亭" target="_blank">🗺️</a></div>
+                    <div class="notes">園區內餐廳，主打使用阿蘇自家農場蔬菜及肉類。</div>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- DAY 6 -->
     <div id="day6" class="day-content">
-        <div class="summary-box"><span>📍 熊本 → 大分 → 福岡</span><span>🦁 野生動物體驗</span></div>
         <div class="info-grid">
             <div>
                 <h2 class="section-title">📍 行程 & 交通</h2>
                 <div class="trans-node">🚗 前往大分 African Safari (約 1h 45m)。</div>
                 <div class="station-node">
-                    <div class="card-header"><span class="time-badge">10:00</span><span class="title-text">African Safari 動物園</span><a class="map-icon" href="https://maps.app.goo.gl/u5K6L7M8N9P0Q1R2" target="_blank">🗺️</a></div>
-                    <div class="notes">可揸車進入野生動物自駕區或乘搭叢林巴士。</div>
+                    <div class="card-header"><span class="time-badge">10:00</span><span class="title-text">African Safari 動物園</span><a class="map-icon" href="https://www.google.com/maps/search/?api=1&query=九州自然動物公園+アフリカンサファリ" target="_blank">🗺️</a></div>
+                    <div class="notes">重頭戲！揸自己租嘅車直闖野生動物區，或乘叢林巴士餵獅子。</div>
                 </div>
-                <div class="trans-node">🚗 前往福岡 (約 1h 30m)。中途可停由布院。</div>
+                <div class="trans-node">🚗 下午前往由布院 (30m)，傍晚出發回福岡 (1h 30m)。</div>
                 <div class="station-node">
-                    <div class="card-header"><span class="time-badge">18:30</span><span class="title-text">🏠 Hilton Fukuoka Sea Hawk</span></div>
-                    <div class="notes">鄰近海濱，方便後續行程。</div>
+                    <div class="card-header"><span class="time-badge">18:30</span><span class="title-text">🏠 Hilton Fukuoka Sea Hawk</span><a class="map-icon" href="https://www.google.com/maps/search/?api=1&query=ヒルトン福岡シーホーク" target="_blank">🗺️</a></div>
+                    <div class="notes">落樓就係百道海濱公園沙灘，連住三晚。</div>
                 </div>
             </div>
             <div>
-                <h2 class="section-title">🍴 美食推薦</h2>
-                <div class="station-node food-card"><div class="card-header"><span class="title-text">別府地獄蒸 / 由布院甜點</span></div></div>
+                <h2 class="section-title">🍴 美食推介</h2>
+                <div class="station-node food-card">
+                    <div class="card-header"><span class="title-text">1. 由布まぶし 心 (金鱗湖本店)</span><a class="map-icon" href="https://www.google.com/maps/search/?api=1&query=由布まぶし+心+金鱗湖本店" target="_blank">🗺️</a></div>
+                    <div class="notes">名物豐後牛釜飯三吃，炭香十足。</div>
+                </div>
+                <div class="station-node food-card">
+                    <div class="card-header"><span class="title-text">2. B-Speak 蛋糕卷</span><a class="map-icon" href="https://www.google.com/maps/search/?api=1&query=B-speak" target="_blank">🗺️</a></div>
+                    <div class="notes">由布院最出名甜品，蛋糕質地極度柔軟。</div>
+                </div>
+                <div class="station-node food-card">
+                    <div class="card-header"><span class="title-text">3. Safari 園內餐廳 Salvia</span><a class="map-icon" href="https://www.google.com/maps/search/?api=1&query=アフリカンサファリ+レストラン" target="_blank">🗺️</a></div>
+                    <div class="notes">方便小朋友食飽再玩，提供兒童餐及大分名物炸雞。</div>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- DAY 7 -->
     <div id="day7" class="day-content">
-        <div class="summary-box"><span>📍 福岡市內</span><span>🧪 科學與海濱</span></div>
         <div class="info-grid">
             <div>
                 <h2 class="section-title">📍 行程 & 交通</h2>
                 <div class="station-node">
-                    <div class="card-header"><span class="time-badge">10:00</span><span class="title-text">福岡市科學館 (六本松)</span></div>
-                    <div class="notes">全室內互動體驗，避暑首選。</div>
+                    <div class="card-header"><span class="time-badge">10:00</span><span class="title-text">福岡市科學館 (六本松)</span><a class="map-icon" href="https://www.google.com/maps/search/?api=1&query=福岡市科学館" target="_blank">🗺️</a></div>
+                    <div class="notes">全冷氣室內科技互動體驗，避暑與學習首選。</div>
                 </div>
-                <div class="trans-node">🚗 前往海濱區域。</div>
+                <div class="trans-node">🚗 前往百道海濱區域。</div>
                 <div class="station-node">
-                    <div class="card-header"><span class="time-badge">16:00</span><span class="title-text">百道海濱公園</span></div>
-                    <div class="notes">沙灘玩耍及欣賞福岡塔夜景。</div>
+                    <div class="card-header"><span class="time-badge">16:00</span><span class="title-text">百道海濱公園 & 福岡塔</span><a class="map-icon" href="https://www.google.com/maps/search/?api=1&query=シーサイドももち海浜公園" target="_blank">🗺️</a></div>
+                    <div class="notes">喺酒店樓下玩沙，傍晚欣賞福岡塔玻璃幕牆點燈。</div>
                 </div>
             </div>
             <div>
-                <h2 class="section-title">🍴 美食推薦</h2>
-                <div class="station-node food-card"><div class="card-header"><span class="title-text">六本松巷弄排隊麵包 / 博多屋台</span></div></div>
+                <h2 class="section-title">🍴 美食推介</h2>
+                <div class="station-node food-card">
+                    <div class="card-header"><span class="title-text">1. Amam Dacotan (六本松)</span><a class="map-icon" href="https://www.google.com/maps/search/?api=1&query=アマムダコタン+六本松" target="_blank">🗺️</a></div>
+                    <div class="notes">全日本爆紅嘅神級打卡麵包店，就在科學館附近。</div>
+                </div>
+                <div class="station-node food-card">
+                    <div class="card-header"><span class="title-text">2. 極味や (福岡 Parco 店)</span><a class="map-icon" href="https://www.google.com/maps/search/?api=1&query=極味や+福岡パルコ店" target="_blank">🗺️</a></div>
+                    <div class="notes">超人氣鐵板漢堡排，自己動手喺石燒上面煎。</div>
+                </div>
+                <div class="station-node food-card">
+                    <div class="card-header"><span class="title-text">3. 博多天神屋台</span><a class="map-icon" href="https://www.google.com/maps/search/?api=1&query=天神屋台" target="_blank">🗺️</a></div>
+                    <div class="notes">夜晚體驗福岡獨有嘅街頭屋台文化，食串燒同拉麵。</div>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- DAY 8 -->
     <div id="day8" class="day-content">
-        <div class="summary-box"><span>📍 福岡海之中道</span><span>🎡 大型公園玩車</span></div>
         <div class="info-grid">
             <div>
                 <h2 class="section-title">📍 行程 & 交通</h2>
-                <div class="trans-node">🚗 前往海之中道海濱公園 (約 30m)。</div>
+                <div class="trans-node">🚗 經市區自駕前往海之中道 (約 30m)。</div>
                 <div class="station-node">
-                    <div class="card-header"><span class="time-badge">10:00</span><span class="title-text">海之中道海濱公園</span><a class="map-icon" href="https://maps.app.goo.gl/9Y8X7W6V5U4T3S2R1" target="_blank">🗺️</a></div>
-                    <div class="notes">直奔 Wonder World 玩卡丁車及投幣小車。</div>
+                    <div class="card-header"><span class="time-badge">10:00</span><span class="title-text">海之中道海濱公園</span><a class="map-icon" href="https://www.google.com/maps/search/?api=1&query=海の中道海浜公園" target="_blank">🗺️</a></div>
+                    <div class="notes">直奔 Wonder World 遊樂區！小朋友可駕駛卡丁車及投幣車，再玩巨型雲朵彈床。</div>
+                </div>
+                <div class="station-node">
+                    <div class="card-header"><span class="time-badge">15:00</span><span class="title-text">動物之森</span><a class="map-icon" href="https://www.google.com/maps/search/?api=1&query=海の中道海浜公園+動物の森" target="_blank">🗺️</a></div>
+                    <div class="notes">園區內可近距離親近水豚及袋鼠。</div>
                 </div>
             </div>
             <div>
-                <h2 class="section-title">🍴 美食推薦</h2>
-                <div class="station-node food-card"><div class="card-header"><span class="title-text">志賀島海鮮丼 (順路)</span></div></div>
+                <h2 class="section-title">🍴 美食推介</h2>
+                <div class="station-node food-card">
+                    <div class="card-header"><span class="title-text">1. 中西食堂 (志賀島)</span><a class="map-icon" href="https://www.google.com/maps/search/?api=1&query=中西食堂" target="_blank">🗺️</a></div>
+                    <div class="notes">公園附近志賀島名店，招牌「曙丼」滿佈蠑螺肉。</div>
+                </div>
+                <div class="station-node food-card">
+                    <div class="card-header"><span class="title-text">2. The Luigans 餐廳</span><a class="map-icon" href="https://www.google.com/maps/search/?api=1&query=The+Luigans+Spa+&+Resort" target="_blank">🗺️</a></div>
+                    <div class="notes">海之中道公園旁的高級度假村餐廳，環境極靚。</div>
+                </div>
+                <div class="station-node food-card">
+                    <div class="card-header"><span class="title-text">3. 博多華味鳥 (天神店)</span><a class="map-icon" href="https://www.google.com/maps/search/?api=1&query=博多華味鳥+天神店" target="_blank">🗺️</a></div>
+                    <div class="notes">福岡名物水炊雞肉鍋，湯底充滿骨膠原，小朋友食得健康。</div>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- DAY 9 -->
     <div id="day9" class="day-content">
-        <div class="summary-box"><span>📍 福岡市區</span><span>👮 KidZania 職業體驗</span></div>
         <div class="info-grid">
             <div>
                 <h2 class="section-title">📍 行程 & 交通</h2>
                 <div class="station-node">
-                    <div class="card-header"><span class="time-badge">09:30</span><span class="title-text">KidZania 福岡 (LaLaport)</span></div>
-                    <div class="notes">兒童職業體驗，全冷氣室內環境。</div>
+                    <div class="card-header"><span class="time-badge">09:30</span><span class="title-text">KidZania 福岡 (LaLaport)</span><a class="map-icon" href="https://www.google.com/maps/search/?api=1&query=キッザニア福岡" target="_blank">🗺️</a></div>
+                    <div class="notes">讓小朋友體驗做消防員、機師等職業，全室內冷氣環境。（需提前預約）</div>
                 </div>
                 <div class="station-node">
-                    <div class="card-header"><span class="time-badge">16:00</span><span class="title-text">LaLaport 1:1 高達模型</span></div>
-                    <div class="notes">觀看動態演出及進行最後採購。</div>
+                    <div class="card-header"><span class="time-badge">16:00</span><span class="title-text">LaLaport 1:1 高達</span><a class="map-icon" href="https://www.google.com/maps/search/?api=1&query=ららぽーと福岡+ガンダム" target="_blank">🗺️</a></div>
+                    <div class="notes">觀看戶外 RX-93ff ν 鋼彈實物大模型動態演出，並進行最後購物。</div>
                 </div>
             </div>
             <div>
-                <h2 class="section-title">🍴 美食推薦</h2>
-                <div class="station-node food-card"><div class="card-header"><span class="title-text">LaLaport 內名店美食街</span></div></div>
+                <h2 class="section-title">🍴 美食推介</h2>
+                <div class="station-node food-card">
+                    <div class="card-header"><span class="title-text">1. 矢場炸豬排 (LaLaport 內)</span><a class="map-icon" href="https://www.google.com/maps/search/?api=1&query=矢場とん+ららぽーと福岡" target="_blank">🗺️</a></div>
+                    <div class="notes">來自名古屋的超人氣濃郁味噌炸豬排。</div>
+                </div>
+                <div class="station-node food-card">
+                    <div class="card-header"><span class="title-text">2. 魚米迴轉壽司 魚べい</span><a class="map-icon" href="https://www.google.com/maps/search/?api=1&query=魚べい+ららぽーと福岡" target="_blank">🗺️</a></div>
+                    <div class="notes">LaLaport 內用高速軌道送餐的壽司店，平靚正兼好玩。</div>
+                </div>
+                <div class="station-node food-card">
+                    <div class="card-header"><span class="title-text">3. 宍道湖琥珀 (LaLaport 美食街)</span><a class="map-icon" href="https://www.google.com/maps/search/?api=1&query=宍道湖しじみ中華蕎麦+琥珀+ららぽーと福岡" target="_blank">🗺️</a></div>
+                    <div class="notes">米芝蓮推介級別，以蜆貝熬製的極鮮甜拉麵湯底。</div>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- DAY 10 -->
     <div id="day10" class="day-content">
-        <div class="summary-box"><span>📍 福岡機場歸途</span><span>✈️ 12:55 班機回港</span></div>
         <div class="info-grid">
             <div>
                 <h2 class="section-title">📍 行程 & 交通</h2>
                 <div class="station-node">
-                    <div class="card-header"><span class="time-badge">09:30</span><span class="title-text">酒店退房 & 機場還車</span></div>
+                    <div class="card-header"><span class="time-badge">09:30</span><span class="title-text">酒店退房 & 機場還車</span><a class="map-icon" href="https://www.google.com/maps/search/?api=1&query=福岡空港+レンタカー" target="_blank">🗺️</a></div>
+                    <div class="notes">前往福岡機場指定租車舖辦理還車手續。</div>
                 </div>
                 <div class="trans-node">✈️ 完成還車後搭乘接駁車往國際航廈。</div>
-                <div class="station-node">
-                    <div class="card-header"><span class="time-badge">12:55</span><span class="title-text">機起飛返港</span></div>
+                
+                <div class="flight-card" style="margin-top:10px;">
+                    <div style="text-align: center;"><div style="font-size: 1.2rem; font-weight: 800;">FUK</div></div>
+                    <div style="flex: 1; text-align: center; color: var(--tsubame-red); font-weight: bold;"><div>UO 601</div><div style="font-size: 0.7rem; color: #64748b;">✈️ 12:55 起飛</div></div>
+                    <div style="text-align: center;"><div style="font-size: 1.2rem; font-weight: 800;">HKG</div></div>
                 </div>
             </div>
             <div>
-                <h2 class="section-title">🏠 後備方案</h2>
-                <div class="station-node food-card"><div class="card-header"><span class="title-text">佐賀武雄圖書館 / 門司港</span></div></div>
+                <h2 class="section-title">🍴 登機前最後衝刺</h2>
+                <div class="station-node food-card">
+                    <div class="card-header"><span class="title-text">1. ラーメン滑走路 (拉麵跑道)</span><a class="map-icon" href="https://www.google.com/maps/search/?api=1&query=ラーメン滑走路" target="_blank">🗺️</a></div>
+                    <div class="notes">位於機場國內線 3 樓，集合多間頂級拉麵（如博多一幸舍）。</div>
+                </div>
+                <div class="station-node food-card">
+                    <div class="card-header"><span class="title-text">2. 福岡機場 國際線美食廣場</span><a class="map-icon" href="https://www.google.com/maps/search/?api=1&query=福岡空港国際線+フードコート" target="_blank">🗺️</a></div>
+                    <div class="notes">過關後亦有餐廳選擇，可以俾小朋友食飽先上機。</div>
+                </div>
+                <div class="station-node food-card">
+                    <div class="card-header"><span class="title-text">3. 吉野家 (機場國內線)</span><a class="map-icon" href="https://www.google.com/maps/search/?api=1&query=吉野家+福岡空港" target="_blank">🗺️</a></div>
+                    <div class="notes">如果時間趕急，快捷且小朋友都鍾意食嘅最佳選擇。</div>
+                </div>
             </div>
         </div>
     </div>
