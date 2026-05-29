@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>2026 九州親子自駕</title>
+    <title>2026 九州親子自駕 - 燕子號 Edition</title>
     <style>
         :root {
             --tsubame-red: #bb2224;    /* 九州新幹線經典紅色 */
@@ -51,7 +51,7 @@
 
         .tab-btn {
             flex: 1;
-            min-width: 80px;
+            min-width: 95px; /* 加闊以容納星期幾 */
             padding: 14px 5px;
             border: none;
             background: none;
@@ -82,6 +82,25 @@
         .day-content { display: none; }
         .day-content.active { display: block; }
 
+        /* 城市指示牌 */
+        .city-banner {
+            background-color: var(--tsubame-red);
+            color: white;
+            text-align: center;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 1.15rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+            border-bottom: 3px solid var(--tsubame-gold);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
         /* 雙欄內容 */
         .info-grid {
             display: grid;
@@ -94,7 +113,7 @@
             font-size: 1.1rem;
             font-weight: 700;
             color: var(--tsubame-red);
-            margin: 12px 0 8px 0;
+            margin: 0 0 8px 0;
             padding-bottom: 4px;
             border-bottom: 2px solid var(--tsubame-gold);
         }
@@ -177,21 +196,23 @@
 </header>
 
 <div class="nav-tabs">
-    <button class="tab-btn active" onclick="switchDay(1)">D1 29/7</button>
-    <button class="tab-btn" onclick="switchDay(2)">D2 30/7</button>
-    <button class="tab-btn" onclick="switchDay(3)">D3 31/7</button>
-    <button class="tab-btn" onclick="switchDay(4)">D4 1/8</button>
-    <button class="tab-btn" onclick="switchDay(5)">D5 2/8</button>
-    <button class="tab-btn" onclick="switchDay(6)">D6 3/8</button>
-    <button class="tab-btn" onclick="switchDay(7)">D7 4/8</button>
-    <button class="tab-btn" onclick="switchDay(8)">D8 5/8</button>
-    <button class="tab-btn" onclick="switchDay(9)">D9 6/8</button>
-    <button class="tab-btn" onclick="switchDay(10)">D10 7/8</button>
+    <button class="tab-btn active" onclick="switchDay(1)">D1 29/7 (三)</button>
+    <button class="tab-btn" onclick="switchDay(2)">D2 30/7 (四)</button>
+    <button class="tab-btn" onclick="switchDay(3)">D3 31/7 (五)</button>
+    <button class="tab-btn" onclick="switchDay(4)">D4 1/8 (六)</button>
+    <button class="tab-btn" onclick="switchDay(5)">D5 2/8 (日)</button>
+    <button class="tab-btn" onclick="switchDay(6)">D6 3/8 (一)</button>
+    <button class="tab-btn" onclick="switchDay(7)">D7 4/8 (二)</button>
+    <button class="tab-btn" onclick="switchDay(8)">D8 5/8 (三)</button>
+    <button class="tab-btn" onclick="switchDay(9)">D9 6/8 (四)</button>
+    <button class="tab-btn" onclick="switchDay(10)">D10 7/8 (五)</button>
 </div>
 
 <div class="main-layout">
 
+    <!-- DAY 1 -->
     <div id="day1" class="day-content active">
+        <div class="city-banner">📍 福岡 ➔ 鹿兒島</div>
         <div class="info-grid">
             <div>
                 <h2 class="section-title">📍 行程 & 交通</h2>
@@ -230,7 +251,9 @@
         </div>
     </div>
 
+    <!-- DAY 2 -->
     <div id="day2" class="day-content">
+        <div class="city-banner">📍 鹿兒島 (櫻島)</div>
         <div class="info-grid">
             <div>
                 <h2 class="section-title">📍 行程 & 交通</h2>
@@ -265,7 +288,9 @@
         </div>
     </div>
 
+    <!-- DAY 3 -->
     <div id="day3" class="day-content">
+        <div class="city-banner">📍 鹿兒島 (大隅半島)</div>
         <div class="info-grid">
             <div>
                 <h2 class="section-title">📍 行程 & 交通</h2>
@@ -298,7 +323,9 @@
         </div>
     </div>
 
+    <!-- DAY 4 -->
     <div id="day4" class="day-content">
+        <div class="city-banner">📍 鹿兒島 ➔ 熊本</div>
         <div class="info-grid">
             <div>
                 <h2 class="section-title">📍 行程 & 交通</h2>
@@ -330,7 +357,9 @@
         </div>
     </div>
 
+    <!-- DAY 5 -->
     <div id="day5" class="day-content">
+        <div class="city-banner">📍 熊本 (阿蘇)</div>
         <div class="info-grid">
             <div>
                 <h2 class="section-title">📍 行程 & 交通</h2>
@@ -362,7 +391,9 @@
         </div>
     </div>
 
+    <!-- DAY 6 -->
     <div id="day6" class="day-content">
+        <div class="city-banner">📍 熊本 ➔ 大分 ➔ 福岡</div>
         <div class="info-grid">
             <div>
                 <h2 class="section-title">📍 行程 & 交通</h2>
@@ -395,7 +426,9 @@
         </div>
     </div>
 
+    <!-- DAY 7 -->
     <div id="day7" class="day-content">
+        <div class="city-banner">📍 福岡</div>
         <div class="info-grid">
             <div>
                 <h2 class="section-title">📍 行程 & 交通</h2>
@@ -427,7 +460,9 @@
         </div>
     </div>
 
+    <!-- DAY 8 -->
     <div id="day8" class="day-content">
+        <div class="city-banner">📍 福岡 (海之中道)</div>
         <div class="info-grid">
             <div>
                 <h2 class="section-title">📍 行程 & 交通</h2>
@@ -459,7 +494,9 @@
         </div>
     </div>
 
+    <!-- DAY 9 -->
     <div id="day9" class="day-content">
+        <div class="city-banner">📍 福岡 (LaLaport)</div>
         <div class="info-grid">
             <div>
                 <h2 class="section-title">📍 行程 & 交通</h2>
@@ -490,7 +527,9 @@
         </div>
     </div>
 
+    <!-- DAY 10 -->
     <div id="day10" class="day-content">
+        <div class="city-banner">📍 福岡 ➔ 香港</div>
         <div class="info-grid">
             <div>
                 <h2 class="section-title">📍 行程 & 交通</h2>
