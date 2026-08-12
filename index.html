@@ -3,404 +3,597 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>8月北九州7天6夜親子無憂之旅</title>
+    <title>2026 九州親子無憂行程</title>
     <style>
         :root {
-            --primary: #2C3E50;
-            --accent: #E67E22;
-            --bg: #F4F7F6;
+            --primary-red: #B71C1C;
+            --primary-dark-red: #8B0000;
+            --bg-color: #F7F5F0;
             --card-bg: #FFFFFF;
-            --text: #333333;
-            --border: #E0E0E0;
+            --text-color: #2B2B2B;
+            --subtext-color: #666666;
+            --border-gold: #D4AF37;
+            --border-light: #E8E3D9;
         }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
+
+        * {
+            box-sizing: border-box;
             margin: 0;
-            padding: 15px;
-            line-height: 1.6;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
         }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            padding-bottom: 30px;
         }
+
+        /* 頂部 Header */
         header {
-            background-color: var(--primary);
+            background-color: var(--primary-red);
             color: white;
             text-align: center;
-            padding: 20px 15px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-        }
-        header h1 {
-            margin: 0 0 8px 0;
-            font-size: 1.5rem;
-        }
-        header p {
-            margin: 0;
-            font-size: 0.9rem;
-            opacity: 0.9;
-        }
-        .day-card {
-            background: var(--card-bg);
-            border-radius: 12px;
-            padding: 18px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            border-left: 6px solid var(--accent);
-        }
-        .day-title {
-            font-size: 1.2rem;
+            padding: 15px 10px;
+            font-size: 1.3rem;
             font-weight: bold;
-            color: var(--primary);
-            border-bottom: 2px solid var(--bg);
-            padding-bottom: 8px;
-            margin-bottom: 12px;
+            letter-spacing: 1px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
+
+        /* 日期分頁 Tab 標籤欄 */
+        .tabs-container {
+            background-color: #FFFFFF;
+            overflow-x: auto;
+            white-space: nowrap;
+            border-bottom: 2px solid var(--border-light);
+            position: sticky;
+            top: 51px;
+            z-index: 99;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .tabs-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tab-btn {
+            display: inline-block;
+            padding: 12px 16px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            color: #555555;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .tab-btn.active {
+            color: var(--primary-red);
+            border-bottom: 3px solid var(--primary-red);
+            background-color: #FFF5F5;
+        }
+
+        /* 主要內容區域 */
+        .content-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        .day-content {
+            display: none;
+        }
+
+        .day-content.active {
+            display: block;
+        }
+
+        /* 主標題 Banner */
+        .day-banner {
+            background-color: var(--primary-red);
+            color: white;
+            text-align: center;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* 分區標題 */
         .section-header {
+            color: var(--primary-red);
+            font-size: 1.1rem;
             font-weight: bold;
-            color: var(--accent);
-            margin-top: 15px;
-            margin-bottom: 8px;
+            margin: 20px 0 10px 0;
             display: flex;
             align-items: center;
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 5px;
         }
-        .timeline {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .timeline li {
+
+        /* 行程卡片容器 */
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 12px 15px;
+            margin-bottom: 12px;
+            border: 1px solid var(--border-light);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
             position: relative;
-            padding-left: 20px;
-            margin-bottom: 10px;
-            font-size: 0.95rem;
         }
-        .timeline li::before {
-            content: "•";
-            color: var(--accent);
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .time-badge {
+            background-color: #222222;
+            color: white;
+            font-size: 0.85rem;
             font-weight: bold;
-            font-size: 1.2rem;
-            position: absolute;
-            left: 0;
-            top: -2px;
+            padding: 3px 8px;
+            border-radius: 5px;
+            margin-right: 10px;
         }
-        .restaurant-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 10px;
-            margin-top: 10px;
+
+        .location-title {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #111111;
+            flex-grow: 1;
         }
-        @media (min-width: 600px) {
-            .restaurant-grid {
-                grid-template-columns: 1fr 1fr;
-            }
+
+        .card-body {
+            background-color: #F9F9F7;
+            padding: 10px 12px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: #444444;
+            line-height: 1.5;
         }
-        .restaurant-card {
-            background-color: #FAFAFA;
-            border: 1px solid var(--border);
+
+        /* 交通連接線區塊 */
+        .transport-block {
+            background-color: #FFFDF7;
+            border: 1px dashed #D4AF37;
             border-radius: 8px;
             padding: 10px 12px;
-            font-size: 0.9rem;
+            margin: 8px 0 12px 15px;
+            font-size: 0.88rem;
+            color: #555555;
+            line-height: 1.4;
         }
+
+        /* 航班資訊卡片 */
+        .flight-card {
+            background: white;
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 15px 0;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+        }
+
+        .flight-code {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #111111;
+        }
+
+        .flight-info {
+            text-align: center;
+        }
+
+        .flight-no {
+            color: var(--primary-red);
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .flight-time {
+            font-size: 0.85rem;
+            color: var(--subtext-color);
+            margin-top: 3px;
+        }
+
+        /* 餐廳卡片 */
+        .restaurant-item {
+            background: white;
+            border-radius: 10px;
+            padding: 12px;
+            margin-bottom: 10px;
+            border: 1px solid var(--border-light);
+        }
+
         .restaurant-name {
             font-weight: bold;
-            color: var(--primary);
+            color: var(--primary-red);
+            font-size: 0.95rem;
+            margin-bottom: 4px;
         }
+
         .restaurant-desc {
-            color: #666;
-            font-size: 0.85rem;
-            margin-top: 4px;
-        }
-        .hotel-tag {
-            background-color: #E8F8F5;
-            color: #16A085;
-            padding: 8px 12px;
-            border-radius: 6px;
-            font-weight: bold;
-            font-size: 0.9rem;
-            margin-top: 15px;
+            font-size: 0.88rem;
+            color: #555555;
         }
     </style>
 </head>
 <body>
 
-<div class="container">
     <header>
-        <h1>8月北九州7天6夜無憂親子之旅</h1>
-        <p>2大2小 (3歲&6歲) | 全程無須開車 (地鐵/特急/的士)</p>
+        2026 九州親子無憂行程
     </header>
 
-    <!-- DAY 1 -->
-    <div class="day-card">
-        <div class="day-title">DAY 1｜8月13日 (星期四) 飛抵福岡 ➔ 入住飯店</div>
-        
-        <div class="section-header">⏱️ 行程與交通安排</div>
-        <ul class="timeline">
-            <li><b>15:30</b> 飛抵福岡機場 (CX 班機)，辦理入境及提取行李。</li>
-            <li><b>16:30</b> 航廈門口<b>搭乘的士直達 HOTEL ROI HAKATA</b>（車程僅約 10–12 分鐘，車費約 1,800 日圓）。</li>
-            <li><b>17:30</b> 入住放低行李，步行至博多站商圈散步與享用晚餐。</li>
-        </ul>
-
-        <div class="hotel-tag">🏨 住宿：HOTEL ROI HAKATA (博多站南公寓式飯店，空間寬敞)</div>
-
-        <div class="section-header">🍽️ 每日推薦 5 間餐廳</div>
-        <div class="restaurant-grid">
-            <div class="restaurant-card">
-                <div class="restaurant-name">1. 博多華味鳥 (博多站前店)</div>
-                <div class="restaurant-desc">招牌水炊雞肉鍋，湯頭富含膠原蛋白，鮮嫩溫和，極適合小朋友。</div>
-            </div>
-            <div class="restaurant-card">
-                <div class="restaurant-name">2. 博多一雙 (博多站東本店)</div>
-                <div class="restaurant-desc">距離飯店極近，濃郁泡系豚骨拉麵名店，地道香濃。</div>
-            </div>
-            <div class="restaurant-card">
-                <div class="restaurant-name">3. 笑樂 もつ鍋 (博多駅店)</div>
-                <div class="restaurant-desc">位於 JR 博多城 10 樓，提供地道牛腸鍋與九州特色定食。</div>
-            </div>
-            <div class="restaurant-card">
-                <div class="restaurant-name">4. 極味や (Kiwamiya 博多店)</div>
-                <div class="restaurant-desc">超人氣黑毛和牛伊萬里牛漢堡排，可在鐵板上自行加熱 DIY。</div>
-            </div>
-            <div class="restaurant-card">
-                <div class="restaurant-name">5. 迴轉壽司 魚米 (Uobei 博多站店)</div>
-                <div class="restaurant-desc">高速軌道賽車送餐，出餐快速、價格平實，小朋友最愛。</div>
-            </div>
-        </div>
+    <!-- 頂部 Tab 選項頁 */ -->
+    <div class="tabs-container">
+        <div class="tab-btn active" onclick="switchDay(1)">D1 8/13 (四)</div>
+        <div class="tab-btn" onclick="switchDay(2)">D2 8/14 (五)</div>
+        <div class="tab-btn" onclick="switchDay(3)">D3 8/15 (六)</div>
+        <div class="tab-btn" onclick="switchDay(4)">D4 8/16 (日)</div>
+        <div class="tab-btn" onclick="switchDay(5)">D5 8/17 (一)</div>
+        <div class="tab-btn" onclick="switchDay(6)">D6 8/18 (二)</div>
+        <div class="tab-btn" onclick="switchDay(7)">D7 8/19 (三)</div>
     </div>
 
-    <!-- DAY 2 -->
-    <div class="day-card">
-        <div class="day-title">DAY 2｜8月14日 (星期五) LaLaport 全日：KidZania ➔ 高達 ➔ 百道海濱沙灘</div>
-        
-        <div class="section-header">⏱️ 行程與交通安排</div>
-        <ul class="timeline">
-            <li><b>08:15</b> 飯店門口<b>搭乘的士直達 LaLaport 福岡</b>（車程約 8–10 分鐘，約 1,200 日圓）。</li>
-            <li><b>09:00 - 15:00</b> <b>KidZania 福岡早場（第1部）職業體驗</b>（消防員、警察、做披薩等）。</li>
-            <li><b>15:30</b> 戶外觀賞 <b>1:1 實物大 ν 高達</b>動態表演及逛 Gundam Side-F。</li>
-            <li><b>16:30</b> 搭乘的士前往 <b>百道海濱公園沙灘</b>（車程約 20 分鐘），踩沙踏浪睇日落。</li>
-            <li><b>18:30</b> MARK IS 福岡百道商場享用晚餐，過後搭的士返回飯店（約 15 分鐘）。</li>
-        </ul>
+    <div class="content-container">
 
-        <div class="hotel-tag">🏨 住宿：HOTEL ROI HAKATA</div>
+        <!-- DAY 1 -->
+        <div id="day1" class="day-content active">
+            <div class="day-banner">📍 香港 ➔ 福岡抵達</div>
 
-        <div class="section-header">🍽️ 每日推薦 5 間餐廳</div>
-        <div class="restaurant-grid">
-            <div class="restaurant-card">
-                <div class="restaurant-name">1. 矢場味噌炸豬排 (LaLaport店)</div>
-                <div class="restaurant-desc">名古屋名物，特製秘方紅味噌醬淋在香酥鐵板豬排上。</div>
+            <div class="flight-card">
+                <div class="flight-code">HKG</div>
+                <div class="flight-info">
+                    <div class="flight-no">CX 588</div>
+                    <div class="flight-time">✈️ 15:30 抵達 FUK</div>
+                </div>
+                <div class="flight-code">FUK</div>
             </div>
-            <div class="restaurant-card">
-                <div class="restaurant-name">2. 金子半之助 (LaLaport美食街)</div>
-                <div class="restaurant-desc">東京超人氣天丼，澎湃炸海鮮與巨型穴子魚，香氣濃郁。</div>
+
+            <div class="section-header">📍 行程 & 交通</div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="time-badge">15:30</span>
+                    <span class="location-title">🛬 福岡機場 國際線航廈</span>
+                </div>
+                <div class="card-body">辦理入境手續、提取行李。準備前往博多市區。</div>
             </div>
-            <div class="restaurant-card">
-                <div class="restaurant-name">3. 魚米壽司 (MARK IS 百道店)</div>
-                <div class="restaurant-desc">百道海濱公園旁商場內，玩完沙灘直接享用平價迴轉壽司。</div>
+
+            <div class="transport-block">
+                🚕 航廈門口直上<b>的士</b>直達 HOTEL ROI HAKATA（車費約 1,800 日圓，車程約 10-12 分鐘，免卻轉車搬行李的辛苦！）。
             </div>
-            <div class="restaurant-card">
-                <div class="restaurant-name">4. 肉のびーふてい (LaLaport店)</div>
-                <div class="restaurant-desc">多汁日式漢堡排與和牛牛排定食，兒童餐配套完善。</div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="time-badge">16:30</span>
+                    <span class="location-title">🏨 HOTEL ROI HAKATA (入住) 🧳</span>
+                </div>
+                <div class="card-body">辦理 Check-in 手續，放低行李。公寓式寬敞房型，休息片刻即可出發食晚餐。</div>
             </div>
-            <div class="restaurant-card">
-                <div class="restaurant-name">5. 誕誕麵 GOMAIWO (LaLaport店)</div>
-                <div class="restaurant-desc">香濃芝麻擔擔麵與溫和的日式煎餃，適合快速享用。</div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="time-badge">17:30</span>
+                    <span class="location-title">🍜 博多車站商圈 散步與晚餐</span>
+                </div>
+                <div class="card-body">步行約 8–10 分鐘至博多車站，享用抵達後的第一餐地道美食。</div>
             </div>
+
+            <div class="section-header">🍽️ 晚餐/每日推薦 5 間餐廳</div>
+            <div class="restaurant-item"><div class="restaurant-name">1. 博多華味鳥 (博多站前店)</div><div class="restaurant-desc">招牌水炊雞肉鍋，湯頭富含膠原蛋白，鮮嫩溫和，極適合小朋友。</div></div>
+            <div class="restaurant-item"><div class="restaurant-name">2. 博多一雙 (博多站東本店)</div><div class="restaurant-desc">距離飯店極近，濃郁泡系豚骨拉麵名店，地道香濃。</div></div>
+            <div class="restaurant-item"><div class="restaurant-name">3. 笑樂 もつ鍋 (博多駅店)</div><div class="restaurant-desc">位於 JR 博多城 10 樓，提供地道牛腸鍋與九州特色定食。</div></div>
+            <div class="restaurant-item"><div class="restaurant-name">4. 極味や (Kiwamiya 博多店)</div><div class="restaurant-desc">超人氣黑毛和牛伊萬里牛漢堡排，可在鐵板上自行加熱 DIY。</div></div>
+            <div class="restaurant-item"><div class="restaurant-name">5. 迴轉壽司 魚米 (Uobei 博多站店)</div><div class="restaurant-desc">高速軌道賽車送餐，出餐快速、價格平實，小朋友最愛。</div></div>
         </div>
+
+        <!-- DAY 2 -->
+        <div id="day2" class="day-content">
+            <div class="day-banner">📍 LaLaport 全日 ➔ 百道海濱沙灘</div>
+
+            <div class="section-header">📍 行程 & 交通</div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="time-badge">08:15</span>
+                    <span class="location-title">🏢 飯店門口出發</span>
+                </div>
+                <div class="card-body">準備搭乘的士前往 LaLaport 福岡。</div>
+            </div>
+
+            <div class="transport-block">
+                🚕 搭乘<b>的士</b>直達 LaLaport（距離極近，車程僅約 8–10 分鐘，車費約 1,200 日圓）。
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="time-badge">09:00</span>
+                    <span class="location-title">👮‍♂️ KidZania 福岡 (早場職業體驗)</span>
+                </div>
+                <div class="card-body">讓 3 歲與 6 歲小朋友穿制服體驗做消防員、警察、Pizza 師傅（09:00 - 15:00）。</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="time-badge">15:30</span>
+                    <span class="location-title">🤖 1:1 實物大 ν 高達 + Gundam Side-F</span>
+                </div>
+                <div class="card-body">於 LaLaport 戶外廣場觀賞高達動態表演，隨後前往高達專賣店買模型手信。</div>
+            </div>
+
+            <div class="transport-block">
+                🚕 搭乘<b>的士</b>前往百道海濱公園（車程約 20 分鐘，車費約 3,000 日圓）。
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="time-badge">16:30</span>
+                    <span class="location-title">🏖️ 百道海濱公園沙灘</span>
+                </div>
+                <div class="card-body">踩沙踏浪睇日落，欣賞福岡塔景致。傍晚去旁邊 MARK IS 商場食晚餐。</div>
+            </div>
+
+            <div class="section-header">🍽️ 每日推薦 5 間餐廳</div>
+            <div class="restaurant-item"><div class="restaurant-name">1. 矢場味噌炸豬排 (LaLaport店)</div><div class="restaurant-desc">名古屋名物，特製秘方紅味噌醬淋在香酥鐵板豬排上。</div></div>
+            <div class="restaurant-item"><div class="restaurant-name">2. 金子半之助 (LaLaport店)</div><div class="restaurant-desc">東京超人氣天丼，澎湃炸海鮮與巨型穴子魚，香氣濃郁。</div></div>
+            <div class="restaurant-item"><div class="restaurant-name">3. 魚米壽司 (MARK IS 百道店)</div><div class="restaurant-desc">百道海濱公園旁商場內，玩完沙灘直接享用平價迴轉壽司。</div></div>
+            <div class="restaurant-item"><div class="restaurant-name">4. 肉のびーふてい (LaLaport店)</div><div class="restaurant-desc">多汁日式漢堡排與和牛牛排定食，兒童餐配套完善。</div></div>
+            <div class="restaurant-item"><div class="restaurant-name">5. 誕誕麵 GOMAIWO (LaLaport店)</div><div class="restaurant-desc">香濃芝麻擔擔麵與溫和的日式煎餃，適合快速享用。</div></div>
+        </div>
+
+        <!-- DAY 3 -->
+        <div id="day3" class="day-content">
+            <div class="day-banner">📍 Marine World 水族館 ➔ 福岡市科學館</div>
+
+            <div class="section-header">📍 行程 & 交通</div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="time-badge">09:30</span>
+                    <span class="location-title">🐬 Marine World 海之中道水族館</span>
+                </div>
+                <div class="card-body">欣賞海豚海獅表演、九州大海水槽沙丁魚風暴、企鵝與海獺。館內 Restaurant Reilly 享用午餐。</div>
+            </div>
+
+            <div class="transport-block">
+                🚃 博多站搭 JR 鹿兒島本線至香椎站，轉香椎線至「海之中道站」（約 40 分鐘）。返程搭 JR 轉地鐵七隈線至「六本松站」。
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="time-badge">14:00</span>
+                    <span class="location-title">🔬 福岡市科學館 (六本松)</span>
+                </div>
+                <div class="card-body">全冷氣室內科技互動展示室，適合小朋友體驗光影、力學與科學實驗，放電避暑。</div>
+            </div>
+
+            <div class="section-header">🍽️ 每日推薦 5 間餐廳</div>
+            <div class="restaurant-item"><div class="restaurant-name">1. Restaurant Reilly (水族館內)</div><div class="restaurant-desc">透過大玻璃觀賞海豚游泳，提供企鵝造型咖哩飯及兒童餐。</div></div>
+            <div class="restaurant-item"><div class="restaurant-name">2. AMAM DACOTAAN (六本松店)</div><div class="restaurant-desc">科學館旁的神級網紅麵包店，各款創意生甜甜圈與鹹麵包極讚。</div></div>
+            <div class="restaurant-item"><div class="restaurant-name">3. 烏龍萬田 (六本松)</div><div class="restaurant-desc">地道博多軟Q烏龍麵，湯頭清甜，配炸天婦羅極受小朋友歡迎。</div></div>
+            <div class="restaurant-item"><div class="restaurant-name">4. 一蘭拉麵 (天神西通店)</div><div class="restaurant-desc">提供全日本唯一的「方形重箱裝拉麵」，風味獨特。</div></div>
+            <div class="restaurant-item"><div class="restaurant-name">5. 天婦羅 橫綱 (博多站周邊)</div><div class="restaurant-desc">現點現炸平價天婦羅定食，附贈美味免費小菜。</div></div>
+        </div>
+
+        <!-- DAY 4 -->
+        <div id="day4" class="day-content">
+            <div class="day-banner">📍 博多 ➔ JR 特急音速號 ➔ 別府溫泉</div>
+
+            <div class="flight-card">
+                <div class="flight-code">博多</div>
+                <div class="flight-info">
+                    <div class="flight-no">JR 特急 Sonic 音速號</div>
+                    <div class="flight-time">⏱️ 車程約 2 小時</div>
+                </div>
+                <div class="flight-code">別府</div>
+            </div>
+
+            <div class="section-header">📍 行程 & 交通</div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="time-badge">09:30</span>
+                    <span class="location-title">🏨 退房出發至博多站</span>
+                </div>
+                <div class="card-body">從 HOTEL ROI HAKATA 退房，步行約 8 分鐘至博多站搭乘 10:00 出發之特急列車。</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="time-badge">12:00</span>
+                    <span class="location-title">♨️ 御宿 野乃 別府 (Check-in 寄行李) 🧳</span>
+                </div>
+                <div class="card-body"><b>出 JR 別府站斜對面步行 1 分鐘即達！</b>全館榻榻米和風溫泉飯店，先寄存行李。</div>
+            </div>
+
+            <div class="transport-block">
+                🚕 站前享用午餐後，搭乘短途的士（約 15 分鐘）前往別府地獄巡禮區。
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="time-badge">13:00</span>
+                    <span class="location-title">♨️ 別府地獄巡禮 (海地獄 / 灶地獄)</span>
+                </div>
+                <div class="card-body">觀賞湛藍海地獄與冒煙溫泉，體驗溫泉蒸氣雞蛋與足湯。</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="time-badge">16:30</span>
+                    <span class="location-title">🏮 入住御宿野乃 享受溫泉風呂</span>
+                </div>
+                <div class="card-body">暢泡 5 間免費獨立家族風呂、食免費冰棒。晚上 21:30 享用免費夜鳴拉麵宵夜。</div>
+            </div>
+
+            <div class="section-header">🍽️ 每日推薦 5 間餐廳</div>
+            <div class="restaurant-item"><div class="restaurant-name">1. 東洋軒 (別府總店)</div><div class="restaurant-desc">大分名物「Toriten 炸雞塊」創始老店，外脆內嫩，多汁不油膩。</div></div>
+            <div class="restaurant-item"><div class="restaurant-name">2. 地獄蒸工房 鐵輪</div><div class="restaurant-desc">利用天然溫泉蒸氣自行加熱食材（地獄蒸），體驗親手蒸海鮮與蔬菜。</div></div>
+            <div class="restaurant-item"><div class="restaurant-name">3. 御宿野乃 免費夜鳴拉麵</div><div class="restaurant-desc">飯店每晚 21:30-23:00 免費提供現煮清爽醬油拉麵。</div></div>
+            <div class="restaurant-item"><div class="restaurant-name">4. 六盛 (別府站前店)</div><div class="restaurant-desc">別府冷麵名店，麵條極具彈性，搭配牛肉片與清爽冷湯。</div></div>
+            <div class="restaurant-item"><div class="restaurant-name">5. 水卷 (別府站前居酒屋)</div><div class="restaurant-desc">提供關門海峽刺身、豐後牛與各式日式家常菜，適合家庭晚餐。</div></div>
+        </div>
+
+        <!-- DAY 5 -->
+        <div id="day5" class="day-content">
+            <div class="day-banner">📍 別府大自然纜車 / 海之卵水族館</div>
+
+            <div class="section-header">📍 行程 & 交通</div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="time-badge">08:30</span>
+                    <span class="location-title">🍣 御宿野乃 奢華勝手丼早餐</span>
+                </div>
+                <div class="card-body">享用自選海鮮刺身蓋飯（鮭魚卵、甜蝦、鮪魚）與大分鄉土料理，睡到自然醒。</div>
+            </div>
+
+            <div class="transport-block">
+                🚕/🚌 從別府站搭乘的士或龜之井巴士前往別府纜車站（車程約 20 分鐘）。
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="time-badge">10:30</span>
+                    <span class="location-title">🚠 別府纜車 (別府ロープウェイ)</span>
+                </div>
+                <div class="card-body">搭乘大型纜車登上近鐵鶴見山，俯瞰別府灣全景，山頂涼爽宜人（或可選海之卵水族館）。</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="time-badge">16:00</span>
+                    <span class="location-title">♨️ 返回飯店 放鬆浸溫泉</span>
+                </div>
+                <div class="card-body">返回別府市區享用晚餐，繼續在御宿野乃享用免費冰棒、乳酸飲品與溫泉。</div>
+            </div>
+
+            <div class="section-header">🍽️ 每日推薦 5 間餐廳</div>
+            <div class="restaurant-item"><div class="restaurant-name">1. 御宿野乃 自助早餐</div><div class="restaurant-desc">奢華自選海鮮刺身蓋飯（鮭魚卵、甜蝦、鮪魚），大分炸雞與鄉土料理。</div></div>
+            <div class="restaurant-item"><div class="restaurant-name">2. 甘味茶屋 (Kanmi Chaya)</div><div class="restaurant-desc">古民家風格日式甜品店，提供大分名物糰子汁 (Yasetuma) 與紅豆麻糬。</div></div>
+            <div class="restaurant-item"><div class="restaurant-name">3. 豐後牛燒肉 炭火燒 (別府站前)</div><div class="restaurant-desc">品嚐大分頂級黑毛和牛「豐後牛」，肉質油花分佈勻稱、入口即化。</div></div>
+            <div class="restaurant-item"><div class="restaurant-name">4. 海鮮いづつ (Izutsu)</div><div class="restaurant-desc">別府在地超高 CP 值海鮮食堂，海鮮丼飯份量極足且食材極新鮮。</div></div>
+            <div class="restaurant-item"><div class="restaurant-name">5. 胡月 (Kogetsu 冷麵)</div><div class="restaurant-desc">別府溫泉冷麵發祥地之一，濃郁牛肉高湯與粗麵條口感一流。</div></div>
+        </div>
+
+        <!-- DAY 6 -->
+        <div id="day6" class="day-content">
+            <div class="day-banner">📍 恐龍博物館 ➔ 門司港開火車 ➔ 返博多</div>
+
+            <div class="section-header">📍 行程 & 交通</div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="time-badge">09:30</span>
+                    <span class="location-title">🚂 別府站搭乘 JR 特急 Sonic 音速號</span>
+                </div>
+                <div class="card-body">退房後直接在別府站搭車前往八幡站（車程約 1 小時 15 分鐘）。</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="time-badge">10:45</span>
+                    <span class="location-title">🦖 北九州生命之旅博物館 (八幡)</span>
+                </div>
+                <div class="card-body">全冷氣室內館，參觀超震撼實物大暴龍骨架與動態恐龍立體劇場。</div>
+            </div>
+
+            <div class="transport-block">
+                🚃 八幡站搭乘 JR 普通電車前往門司港站（車程約 15 分鐘）。
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="time-badge">12:30</span>
+                    <span class="location-title">🍛 門司港懷舊區 燒咖喱 & 鐵道館</span>
+                </div>
+                <div class="card-body">享用著名焗烤燒咖哩，隨後參觀<b>九州鐵道紀念館</b>，讓小朋友親自駕駛迷你電車。</div>
+            </div>
+
+            <div class="transport-block">
+                🚂 門司港搭 JR 返回小倉/八幡轉乘特急 Sonic 音速號返回博多站（車程約 50 分鐘），重返 HOTEL ROI HAKATA 入住。
+            </div>
+
+            <div class="section-header">🍽️ 每日推薦 5 間餐廳</div>
+            <div class="restaurant-item"><div class="restaurant-name">1. BEAR FRUITS (門司港本店)</div><div class="restaurant-desc">著名燒咖喱店（焗烤起司半熟蛋咖哩），日本女星上戶彩極力推薦。</div></div>
+            <div class="restaurant-item"><div class="restaurant-name">2. 伽哩本舗 (門司港懷舊店)</div><div class="restaurant-desc">海鮮燒咖喱專門店，邊用餐邊俯瞰門司港懷舊區與海峽景致。</div></div>
+            <div class="restaurant-item"><div class="restaurant-name">3. 資さんうどん (Sukesan 八幡店)</div><div class="restaurant-desc">北九州靈魂烏龍麵名店，肉牛蒡烏龍麵與日式紅豆餅 (Botamochi) 必食。</div></div>
+            <div class="restaurant-item"><div class="restaurant-name">4. 唐戶市場 (門司港乘船對岸)</div><div class="restaurant-desc">若時間充裕可搭 5 分鐘船至對岸下關，享用平價握壽司與河豚料理。</div></div>
+            <div class="restaurant-item"><div class="restaurant-name">5. 博多 華味鳥 (博多站周邊)</div><div class="restaurant-desc">返回博多後享用美味雞肉水炊鍋，為北九州之旅完美收尾。</div></div>
+        </div>
+
+        <!-- DAY 7 -->
+        <div id="day7" class="day-content">
+            <div class="day-banner">📍 福岡 ➔ 香港</div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="time-badge">09:30</span>
+                    <span class="location-title">🏠 HOTEL ROI HAKATA (退房) 🧳</span>
+                </div>
+                <div class="card-body">辦理退房並寄存行李，出發至博多車站商圈進行最後衝刺購物。</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="time-badge">10:00</span>
+                    <span class="location-title">🛍️ 博多車站 AMU Plaza / KITTE 購物</span>
+                </div>
+                <div class="card-body">採買九州手信、伴手禮，於車站美食街享用午餐。</div>
+            </div>
+
+            <div class="transport-block">
+                🚕 返回飯店取行李，門司/飯店口直上<b>的士</b>直達福岡機場國際線航廈（車費約 1,800 日圓，車程約 10–12 分鐘，免卻轉車搬行李的辛苦！）。
+            </div>
+
+            <div class="flight-card">
+                <div class="flight-code">FUK</div>
+                <div class="flight-info">
+                    <div class="flight-no">CX 589</div>
+                    <div class="flight-time">✈️ 16:40 起飛</div>
+                </div>
+                <div class="flight-code">HKG</div>
+            </div>
+
+            <div class="section-header">🍽️ 登機前最後衝刺 / 推薦餐廳</div>
+            <div class="restaurant-item"><div class="restaurant-name">1. 牛舌炭燒 利久 (博多店)</div><div class="restaurant-desc">位於 JR 博多城 9 樓，仙台厚切炭燒牛舌，搭配山藥泥與麥飯。</div></div>
+            <div class="restaurant-item"><div class="restaurant-name">2. 博多一幸舍 (博多站前本店)</div><div class="restaurant-desc">經典濃郁豚骨拉麵，湯頭泡沫細緻，離飯店與車站極近。</div></div>
+            <div class="restaurant-item"><div class="restaurant-name">3. 鰻魚飯 備長 (KITTE博多店)</div><div class="restaurant-desc">名古屋風格鰻魚飯三吃 (Hitsumabushi)，炭香濃郁，醬汁鹹甜。</div></div>
+            <div class="restaurant-item"><div class="restaurant-name">4. 梅蘭 (KITTE博多店)</div><div class="restaurant-desc">招牌梅蘭炒麵，外層煎至金黃酥脆，內裹熱騰騰什錦勾芡餡料。</div></div>
+            <div class="restaurant-item"><div class="restaurant-name">5. 福岡機場國際線 美食廣場</div><div class="restaurant-desc">過關後亦有餐廳選擇，可以俾小朋友食飽先上機。</div></div>
+        </div>
+
     </div>
 
-    <!-- DAY 3 -->
-    <div class="day-card">
-        <div class="day-title">DAY 3｜8月15日 (星期六) Marine World 水族館 ➔ 福岡市科學館</div>
-        
-        <div class="section-header">⏱️ 行程與交通安排</div>
-        <ul class="timeline">
-            <li><b>09:30 - 13:00</b> 步行至博多站搭 JR 鹿兒島本線至香椎站，轉香椎線至「海之中道站」（約 40 分鐘），參觀 <b>Marine World 水族館</b>（睇海豚/海獅表演）。</li>
-            <li><b>14:00 - 17:30</b> 搭 JR/地鐵前往六本松站，直達 <b>福岡市科學館</b>（全冷氣室內科技互動）。</li>
-            <li><b>18:00</b> 返回博多站 / 天神享用晚餐，散步回飯店。</li>
-        </ul>
+    <script>
+        function switchDay(dayNum) {
+            // 隱藏所有 Day 內容
+            const contents = document.querySelectorAll('.day-content');
+            contents.forEach(content => content.classList.remove('active'));
 
-        <div class="hotel-tag">🏨 住宿：HOTEL ROI HAKATA</div>
+            // 取消所有 Tab 按鈕啟動狀態
+            const tabs = document.querySelectorAll('.tab-btn');
+            tabs.forEach(tab => tab.classList.remove('active'));
 
-        <div class="section-header">🍽️ 每日推薦 5 間餐廳</div>
-        <div class="restaurant-grid">
-            <div class="restaurant-card">
-                <div class="restaurant-name">1. Restaurant Reilly (水族館內)</div>
-                <div class="restaurant-desc">透過大玻璃觀賞海豚游泳，提供企鵝造型咖喱飯及兒童餐。</div>
-            </div>
-            <div class="restaurant-card">
-                <div class="restaurant-name">2. AMAM DACOTAAN (六本松店)</div>
-                <div class="restaurant-desc">科學館旁的神級網紅麵包店，各款創意生甜甜圈與鹹麵包極讚。</div>
-            </div>
-            <div class="restaurant-card">
-                <div class="restaurant-name">3. 烏龍麵 烏龍 (烏龍萬田 六本松)</div>
-                <div class="restaurant-desc">地道博多軟Q烏龍麵，湯頭清甜，配炸天婦羅極受小朋友歡迎。</div>
-            </div>
-            <div class="restaurant-card">
-                <div class="restaurant-name">4. 一蘭拉麵 (天神西通店)</div>
-                <div class="restaurant-desc">提供全日本唯一的「方形重箱裝拉麵」，風味獨特。</div>
-            </div>
-            <div class="restaurant-card">
-                <div class="restaurant-name">5. 天婦羅 橫綱 (博多站周邊)</div>
-                <div class="restaurant-desc">現點現炸平價天婦羅定食，附贈美味免費小菜。</div>
-            </div>
-        </div>
-    </div>
+            // 啟動點選的 Day 內容與 Tab 按鈕
+            document.getElementById('day' + dayNum).classList.add('active');
+            tabs[dayNum - 1].classList.add('active');
 
-    <!-- DAY 4 -->
-    <div class="day-card">
-        <div class="day-title">DAY 4｜8月16日 (星期日) JR 特急音速號 ➔ 出別府站1分鐘入住御宿野乃 ➔ 地獄巡禮</div>
-        
-        <div class="section-header">⏱️ 行程與交通安排</div>
-        <ul class="timeline">
-            <li><b>09:30</b> 退房，步行至博多站搭乘 <b>10:00 JR 特急 Sonic 音速號</b> 前往別府（車程約 2 小時）。</li>
-            <li><b>12:00</b> 抵達別府，<b>出站步行 1 分鐘即達「御宿 野乃 別府」Check-in 寄存行李</b>。</li>
-            <li><b>12:30 - 16:00</b> 市區享用「Toriten 炸雞」午餐，搭短途的士參觀 <b>別府地獄巡禮</b>（海地獄、灶地獄）食蒸氣蛋。</li>
-            <li><b>16:30</b> 返回御宿野乃，體驗全館榻榻米，暢泡 <b>獨立家族溫泉風呂</b>、食免費冰棒，21:30 享用免費夜鳴拉麵宵夜。</li>
-        </ul>
-
-        <div class="hotel-tag">♨️ 住宿：御宿 野乃 別府 (和風日式溫泉飯店，全館榻榻米 + 5間免費家族風呂)</div>
-
-        <div class="section-header">🍽️ 每日推薦 5 間餐廳</div>
-        <div class="restaurant-grid">
-            <div class="restaurant-card">
-                <div class="restaurant-name">1. 東洋軒 (別府總店)</div>
-                <div class="restaurant-desc">大分名物「Toriten 炸雞塊」創始老店，外脆內嫩，多汁不油膩。</div>
-            </div>
-            <div class="restaurant-card">
-                <div class="restaurant-name">2. 地獄蒸工房 鐵輪</div>
-                <div class="restaurant-desc">利用天然溫泉蒸氣自行加熱食材（地獄蒸），體驗親手蒸海鮮與蔬菜。</div>
-            </div>
-            <div class="restaurant-card">
-                <div class="restaurant-name">3. 御宿野乃 免費夜鳴拉麵</div>
-                <div class="restaurant-desc">飯店每晚 21:30-23:00 免費提供現煮清爽醬油拉麵。</div>
-            </div>
-            <div class="restaurant-card">
-                <div class="restaurant-name">4. 六盛 (別府站前店)</div>
-                <div class="restaurant-desc">別府冷麵名店，麵條極具彈性，搭配牛肉片與清爽冷湯。</div>
-            </div>
-            <div class="restaurant-card">
-                <div class="restaurant-name">5. 水卷 (別府站前居酒屋)</div>
-                <div class="restaurant-desc">提供關門海峽刺身、豐後牛與各式日式家常菜，適合家庭晚餐。</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- DAY 5 -->
-    <div class="day-card">
-        <div class="day-title">DAY 5｜8月17日 (星期一) 別府纜車 / 海之卵水族館（大自然悠閒放鬆）</div>
-        
-        <div class="section-header">⏱️ 行程與交通安排</div>
-        <ul class="timeline">
-            <li><b>上午</b>：享用御宿野乃極其豐富的<b>海鮮勝手丼（自選刺身海鮮飯）與大分鄉土早餐</b>，睡到自然醒。</li>
-            <li><b>10:30 - 15:30</b>：搭乘短途的士或巴士前往 <b>別府纜車（別府ロープウェイ）</b> 搭大型纜車上山俯瞰別府灣，或前往 <b>海之卵水族館</b>。</li>
-            <li><b>傍晚</b>：返回別府市區享用晚餐，晚上繼續在御宿野乃享受溫泉與宵夜。</li>
-        </ul>
-
-        <div class="hotel-tag">♨️ 住宿：御宿 野乃 別府</div>
-
-        <div class="section-header">🍽️ 每日推薦 5 間餐廳</div>
-        <div class="restaurant-grid">
-            <div class="restaurant-card">
-                <div class="restaurant-name">1. 御宿野乃 自助早餐</div>
-                <div class="restaurant-desc">奢華自選海鮮刺身蓋飯（鮭魚卵、甜蝦、鮪魚），大分炸雞與鄉土料理。</div>
-            </div>
-            <div class="restaurant-card">
-                <div class="restaurant-name">2. 甘味茶屋 (Kanmi Chaya)</div>
-                <div class="restaurant-desc">古民家風格日式甜品店，提供大分名物糰子汁 (Yasetuma) 與紅豆麻糬。</div>
-            </div>
-            <div class="restaurant-card">
-                <div class="restaurant-name">3. 豐後牛燒肉 炭火燒 (別府站前)</div>
-                <div class="restaurant-desc">品嚐大分頂級黑毛和牛「豐後牛」，肉質油花分佈勻稱、入口即化。</div>
-            </div>
-            <div class="restaurant-card">
-                <div class="restaurant-name">4. 海鮮いづつ (Izutsu)</div>
-                <div class="restaurant-desc">別府在地超高 CP 值海鮮食堂，海鮮丼飯份量極足且食材極新鮮。</div>
-            </div>
-            <div class="restaurant-card">
-                <div class="restaurant-name">5. 胡月 (Kogetsu 冷麵)</div>
-                <div class="restaurant-desc">別府溫泉冷麵發祥地之一，濃郁牛肉高湯與粗麵條口感一流。</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- DAY 6 -->
-    <div class="day-card">
-        <div class="day-title">DAY 6｜8月18日 (星期二) 八幡恐龍博物館 ➔ 門司港開火車 ➔ 返博多</div>
-        
-        <div class="section-header">⏱️ 行程與交通安排</div>
-        <ul class="timeline">
-            <li><b>09:30</b> 退房，直接在別府站搭乘 <b>JR 特急 Sonic 音速號</b> 前往 <b>八幡站</b>（約 1 小時 15 分鐘）。</li>
-            <li><b>10:45 - 12:15</b> 參觀 <b>北九州生命之旅博物館</b>（全冷氣睇實物大暴龍骨架與動態恐龍）。</li>
-            <li><b>12:30 - 15:30</b> 搭電車 15 分鐘至 <b>門司港</b>，享用 <b>燒咖喱</b>，參觀 <b>九州鐵道紀念館</b>（讓小朋友駕駛迷你電車）。</li>
-            <li><b>16:00 - 16:45</b> 搭乘 JR 特急返博多站，<b>返回 HOTEL ROI HAKATA 入住第 6 晚</b>。</li>
-        </ul>
-
-        <div class="hotel-tag">🏨 住宿：HOTEL ROI HAKATA</div>
-
-        <div class="section-header">🍽️ 每日推薦 5 間餐廳</div>
-        <div class="restaurant-grid">
-            <div class="restaurant-card">
-                <div class="restaurant-name">1. BEAR FRUITS (門司港本店)</div>
-                <div class="restaurant-desc">著名燒咖喱店（焗烤起司半熟蛋咖哩），日本女星上戶彩極力推薦。</div>
-            </div>
-            <div class="restaurant-card">
-                <div class="restaurant-name">2. 伽哩本舗 (門司港懷舊店)</div>
-                <div class="restaurant-desc">海鮮燒咖喱專門店，邊用餐邊俯瞰門司港懷舊區與海峽景致。</div>
-            </div>
-            <div class="restaurant-card">
-                <div class="restaurant-name">3. 資さんうどん (Sukesan 八幡店)</div>
-                <div class="restaurant-desc">北九州靈魂烏龍麵名店，肉牛蒡烏龍麵與日式紅豆餅 (Botamochi) 必食。</div>
-            </div>
-            <div class="restaurant-card">
-                <div class="restaurant-name">4. 唐戶市場 (門司港乘船對岸)</div>
-                <div class="restaurant-desc">若時間充裕可搭 5 分鐘船至對岸下關，享用平價握壽司與河豚料理。</div>
-            </div>
-            <div class="restaurant-card">
-                <div class="restaurant-name">5. 博多 華味鳥 (博多站周邊)</div>
-                <div class="restaurant-desc">返回博多後享用美味雞肉水炊鍋，為北九州之旅完美收尾。</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- DAY 7 -->
-    <div class="day-card">
-        <div class="day-title">DAY 7｜8月19日 (星期三) 博多車站最後購物 ➔ 16:40 班機返港</div>
-        
-        <div class="section-header">⏱️ 行程與交通安排</div>
-        <ul class="timeline">
-            <li><b>09:30 - 13:00</b> 退房寄存行李，博多車站商圈（AMU Plaza / Kitte 博多）最後採買與享用午餐。</li>
-            <li><b>14:00</b> <b>搭乘的士直達福岡機場國際線航廈</b>（車程僅約 10–12 分鐘）。</li>
-            <li><b>16:40</b> 輕鬆搭乘國泰班機飛返香港！</li>
-        </ul>
-
-        <div class="section-header">🍽️ 每日推薦 5 間餐廳</div>
-        <div class="restaurant-grid">
-            <div class="restaurant-card">
-                <div class="restaurant-name">1. 牛舌炭燒 利久 (博多店)</div>
-                <div class="restaurant-desc">位於 JR 博多城 9 樓，仙台厚切炭燒牛舌，搭配山藥泥與麥飯。</div>
-            </div>
-            <div class="restaurant-card">
-                <div class="restaurant-name">2. 博多一幸舍 (博多站前本店)</div>
-                <div class="restaurant-desc">經典濃郁豚骨拉麵，湯頭泡沫細緻，離飯店與車站極近。</div>
-            </div>
-            <div class="restaurant-card">
-                <div class="restaurant-name">3. 鰻魚飯 備長 (KITTE博多店)</div>
-                <div class="restaurant-desc">名古屋風格鰻魚飯三吃 (Hitsumabushi)，炭香濃郁，醬汁鹹甜。</div>
-            </div>
-            <div class="restaurant-card">
-                <div class="restaurant-name">4. 梅蘭 (KITTE博多店)</div>
-                <div class="restaurant-desc">招牌梅蘭炒麵，外層煎至金黃酥脆，內裹熱騰騰什錦勾芡餡料。</div>
-            </div>
-            <div class="restaurant-card">
-                <div class="restaurant-name">5. 福岡機場免稅店美食</div>
-                <div class="restaurant-desc">離境前可在機場品嚐九州地道拉麵或購買小雞饅頭/明太子手信。</div>
-            </div>
-        </div>
-    </div>
-
-</div>
-
+            // 自動置頂捲動
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
 </body>
 </html>
